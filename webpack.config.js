@@ -5,10 +5,27 @@ const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPl
 
 
 module.exports = {
-    entry: './assets/js/script.js',
+    entry: {
+        app: "./assets/js/script.js",
+        events: "./assets/js/events.js",
+        schedule: "./assets/js/schedule.js",
+        tickets: "./assets/js/tickets.js"
+    },
     output: {
-        path: path.resolve(__dirname, 'dist'),
-        filename: 'main.bundle.js'
+        filename: '[name].bundle.js',
+        path: __dirname + "/dist",
+      },
+      module: {
+        rules: [
+          {
+            test: /\.jpg$/i,
+            use: [
+              {
+                loader: 'file-loader'
+              }
+            ]
+          }
+        ]
       },
       plugins: [
         new webpack.ProvidePlugin({
