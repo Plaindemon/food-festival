@@ -21,7 +21,19 @@ module.exports = {
             test: /\.jpg$/i,
             use: [
               {
-                loader: 'file-loader'
+                loader: 'file-loader',
+                options: {
+                  esModule: false,
+                  name (file) {
+                    return "[path][name].[ext]"
+                  },
+                  publicPath: function(url) {
+                    return url.replace("../", "/assets/")
+                  }
+                }  
+              },
+              {
+                loader: 'image-webpack-loader'
               }
             ]
           }
