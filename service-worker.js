@@ -28,7 +28,7 @@ self.addEventListener('install', function (e) {
     )
   })
 
-  self.addEventListener('activate', function(e) {
+self.addEventListener('activate', function(e) {
     e.waitUntil(
       caches.keys().then(function(keyList) {
         let cacheKeeplist = keyList.filter(function(key) {
@@ -48,7 +48,7 @@ self.addEventListener('install', function (e) {
     );
   });
 
-  self.addEventListener('fetch', function (e) {
+self.addEventListener('fetch', function (e) {
     console.log('fetch request : ' + e.request.url)
     e.respondWith(
         caches.match(e.request).then(function (request) {
@@ -64,4 +64,4 @@ self.addEventListener('install', function (e) {
           // return request || fetch(e.request)
           })
     )
-  })
+  });
